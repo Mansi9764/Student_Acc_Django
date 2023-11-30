@@ -1,56 +1,79 @@
 from django.shortcuts import render,redirect
-from .models import Student
+# from .models import Student
+from .models import Contact
 from django.contrib import messages
+from django.utils import timezone
 # Create your views here.
-def index(request):
-    data=Student.objects.all()
-    context={"data":data}
-    return render(request,"index.html",context)
+# def index(request):
+#     data=Student.objects.all()
+#     context={"data":data}
+#     return render(request,"index.html",context)
 
-def about(request):
-    return render(request,"about.html")  
+# def about(request):
+#     return render(request,"about.html")  
+
+
+
+def index(request):
+    data=Contact.objects.all()
+    context={"data":data}
+    return render(request,"list_page.html",context)
+
+def create(request):
+    return render(request,"create.html")
 
 def insertData(request):
+    
     if request.method=="POST":
+        # data=Contact.objects.all()
+        # for d in data:
+        #     if d.name==name and d.email==email:
+        #        messages.info(request,"Name already exists") 
         name=request.POST.get("name")
         email=request.POST.get("email")
-        age=request.POST.get("age")
-        gender=request.POST.get("gender")
-        print(name,email,age,gender)
-        query=Student(name=name,email=email,age=age,gender=gender)
+        notes=request.POST.get("notes")
+        time = timezone.now()
+        print(name,email,notes,time)
+        query=Contact(name=name,email=email,notes=notes,time=time)
         query.save()
-        messages.info(request,"Data inserted successfully")
-        return render(request,"index.html")  
-
+        # data=Contact.objects.all()
+        # context={"data":data}
+        # messages.info(request,"Data inserted successfully")
+        return render(request,"list_page.html")  
+    
 def updateData(request,id):
     
     if request.method=="POST":
-        name=request.POST.get("name")   # or we can write as -> name=request.POST[name]
+        # id=request.POST.get("id")
+        name=request.POST.get("name")
         email=request.POST.get("email")
-        age=request.POST.get("age")
-        gender=request.POST.get("gender")
-        editStudent = Student.objects.get(id=id)
+        notes=request.POST.get("notes")
+        editStudent = Contact.objects.get(id=id)
         editStudent.name=name
         editStudent.email=email
-        editStudent.age=age
-        editStudent.gender=gender
+        editStudent.notes=notes
+        # editStudent.time=time
+        print("request ka",name,email,notes)
+        print("NEw UPDATED OBJECT___________",editStudent.id,editStudent.name,editStudent.email,editStudent.notes,editStudent.time)
         editStudent.save()
-
-        # query=Student(name=name,email=email,age=age,gender=gender)
-        # query.save()
+        print("updated successfully")
         return redirect("/")
-   
-    d=Student.objects.get(id=id)
-    context={"d":d}
-    return render(request,"edit.html",context)
+    else:
+        print("Id------",id)
+        data = Contact.objects.get(id=id)
+        context={"data":data}
+        print("else part ka context",data.id,data.name,data.email,data.notes,data.time)
+        return render(request,"edit.html",context)
+    
+    
 
-def deleteData(request,id):
+def deleteData(request,id):  
     if request.method=="POST":
-       delStuObject= Student.objects.get(id=id)
-       delStuObject.delete()
+       delContactObject= Contact.objects.get(id=id)
+       delContactObject.delete()
        messages.info(request,"Data deleted successfully")
        return redirect("/")
     else:
-        deleteData=Student.objects.get(id=id)
-        deleteContext={"deleteData": deleteData}
+        data=Contact.objects.get(id=id)
+        deleteContext={"data":data}
         return render(request,"delete.html",deleteContext)

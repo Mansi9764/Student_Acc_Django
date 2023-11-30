@@ -23,66 +23,51 @@
             padding: 10px;
             color: green; /* Set the text color to green */
         }
+        .custom-table th, .custom-table td {
+            width: 15%; /* Adjust the width of each column */
+            text-align: auto; /* Center the text within each cell */
+        }
     </style>
 
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-md text-center">
-          <a class="navbar-brand " href="/">CONTACT MANAGEMENT</a>
+        <div class="container-md d-flex justify-content-center">
+            <a class="navbar-brand" href="/">CONTACT MANAGEMENT</a>
         </div>
     </nav>
-
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-md-5">
+    
+    <br>
+    <div>
+        <a button type="button" href="/create" class="btn btn-primary">Create New Contact</button></a>
+    </div><br>
+        <div class="col-md-4">
+            
                 <h2 class="text-white bg-dark text-center p-3">CONTACT DETAILS</h2>
-                <br>
-                <form action="/insert" method="post"> {% csrf_token %}
-                    <div class="form-group">
-                        <label for="name">Contact Name:</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Contact name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email id" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="notes">Notes:</label>
-                        <input type="text" class="form-control" id="notes" placeholder="Some notes Text" name="notes">
-                    </div>
-                    <br>
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                    <button class="btn btn-primary" type="submit">Cancel</button>
-                        
-                    
-                </form>
-            </div>
-            <div class="col-md-4">
-                <h2 class="text-white bg-dark text-center p-3">STUDENT DETAILS</h2>
-                {% for message in messages %}
-                    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                {% comment %}{% for message in messages %}
+                    {% comment %} <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
                         <strong>{{message}}</strong> 
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {%endfor%}
-             <table class="table table-striped">
+                    </div> {% endcomment %}
+                {% comment %} {%endfor%}  {% endcomment %}
+                </div>
+             <table class="table table-striped custom-table">
                 <thead>
                   <tr>
-                    <th scope="col">Contact Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Created time</th>
+                    <th>Id</th>
+                    <th>Contact Name</th>
+                    <th>Email</th>
+                    <th>Created time</th>
                     
                   </tr>
                 </thead>
                 <tbody>
                     {% for d in data %}
                     <tr>
-                        <th scope="row">{{d.contactName}}</th>
+                        <td>{{d.id}}</td>
+                        <td>{{d.name}}</td>
                         <td>{{d.email}}</td>
-                        <td>{{d.createdTime}}</td>
+                        <td>{{d.time}}</td>
                         
                         <td><a button type="button" href="/update/{{d.id}}" class="btn btn-outline-primary">Edit</button></a></td>
                         <td><a button type="button" href="/delete/{{d.id}}" class="btn btn-outline-danger">Delete</button></a></td>

@@ -20,33 +20,34 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-5">
-                <h2 class="text-white bg-dark text-center p-3">INSERT STUDENT DETAILS</h2>
+                <h2 class="text-white bg-dark text-center p-3">Contact Details of Student</h2>
                 <br>
-                <form action="/update/{{d.id}}" method="post"> {% csrf_token %}
+                <form action="/update/{{data.id}}" method="post"> {% csrf_token %}
+                    {% comment %} <div class="form-group">
+                        <label for="name">ID:</label>
+                        <input type="number" class="form-control" value="{{d.id}}" name="id" required>
+                    </div> {% endcomment %}
+                    <div class="form-group">
+                        
+                        <input type="number" class="form-control" id="{{data.id}}" value="{{data.id}}" name="id" required>
+                    </div>
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" class="form-control" value="{{d.id}}" name="name" required>
+                        <input type="text" class="form-control" id="{{data.name}}"  value="{{data.name}}" name="name" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control" value="{{d.email}}" name="email" placeholder="Enter Student email" required>
+                        <input type="email" class="form-control" id="{{data.email}}" value="{{data.email}}" name="email"  required>
                     </div>
 
                     <div class="form-group">
-                        <label for="age">Age:</label>
-                        <input type="number" class="form-control" value="{{d.age}}" name="age" placeholder="Enter the Student age" required>
+                        <label for="notes">Notes:</label>
+                        <input type="text" class="form-control" id="{{data.notes}}" value="{{data.notes}}" name="notes" required>
                     </div>
-
                     <div class="form-group">
-                        <label for="gender">Gender</label>
-                        <select value="gender" name="gender" class="form-control">
-                            <option selected>{{d.gender}}</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Others</option>
-                        </select>
-                       
+                        <label for="time">Time:</label>
+                        <input type="text" class="form-control" id="{{data.time}}" value="{{data.time}}" name="time">
                     </div>
                     <br>
                     <div>
@@ -58,6 +59,6 @@
 
         </div>
     </div>
-
+</div>
   </body>
 </html>

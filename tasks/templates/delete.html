@@ -22,31 +22,20 @@
             <div class="col-md-5">
                 <h2 class="text-white bg-dark text-center p-3">Data to be deleted</h2>
                 <br>
-                <form action="/delete/{{deleteData.id}}" method="post"> {% csrf_token %}
+                <form action="/delete/{{data.id}}" method="post"> {% csrf_token %}
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" class="form-control" value="{{deleteData.id}}" name="name" required>
+                        <input type="text" class="form-control" value="{{data.name}}" name="name" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control" value="{{deleteData.email}}" name="email"  required>
+                        <input type="email" class="form-control" value="{{data.email}}" name="email"  required>
                     </div>
 
                     <div class="form-group">
-                        <label for="age">Age:</label>
-                        <input type="number" class="form-control" value="{{deleteData.age}}" name="age" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="gender">Gender</label>
-                        <select value="gender" name="gender" class="form-control">
-                            <option selected>{{deleteData.gender}}</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Others</option>
-                        </select>
-                       
+                        <label for="notes">Notes:</label>
+                        <input type="text" class="form-control" value="{{data.notes}}" name="age" required>
                     </div>
                     <br>
                     <div>
