@@ -12,7 +12,7 @@
 
     <style>
         .navbar-brand {
-            font-size: 30px; /* Adjust the size as needed */
+            font-size: 40px; /* Adjust the size as needed */
         }
         footer {
             position: fixed;
@@ -27,6 +27,19 @@
             width: 15%; /* Adjust the width of each column */
             text-align: auto; /* Center the text within each cell */
         }
+        h2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 10vh;
+            margin: 50;
+        }
+        .custom-offset {
+            margin-left: 1cm;
+        }
+        .custom-font-size {
+            font-size: 20px; 
+        }
     </style>
 
   </head>
@@ -39,22 +52,26 @@
     
     <br>
     <div>
-        <a button type="button" href="/create" class="btn btn-primary">Create New Contact</button></a>
+        <a button type="button" href="/create" class="btn btn-primary custom-offset">Create New Contact</button></a>
     </div><br>
-        <div class="col-md-4">
-            
-                <h2 class="text-white bg-dark text-center p-3">CONTACT DETAILS</h2>
-                {% comment %}{% for message in messages %}
-                    {% comment %} <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-4 text-center custom-font-size">
+                        <h2 class="text-white bg-success p-3">CONTACT DETAILS</h2>
+                    </div>
+                </div>
+        </div>
+        <br>
+                {% for message in messages %}
+                   <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
                         <strong>{{message}}</strong> 
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div> {% endcomment %}
-                {% comment %} {%endfor%}  {% endcomment %}
-                </div>
+                    </div> 
+                 {%endfor%}  
              <table class="table table-striped custom-table">
                 <thead>
                   <tr>
-                    <th>Id</th>
+                    {% comment %} <th>Id</th> {% endcomment %}
                     <th>Contact Name</th>
                     <th>Email</th>
                     <th>Created time</th>
@@ -64,7 +81,7 @@
                 <tbody>
                     {% for d in data %}
                     <tr>
-                        <td>{{d.id}}</td>
+                        {% comment %} <td>{{d.id}}</td> {% endcomment %}
                         <td>{{d.name}}</td>
                         <td>{{d.email}}</td>
                         <td>{{d.time}}</td>
