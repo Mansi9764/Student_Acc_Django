@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Crud Mini Project</title>
+<style>
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #f1f1f1; /* Add a background color for better visibility */
+        text-align: center;
+        padding: 10px;
+        color: green; /* Set the text color to green */
+    }
+</style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-md text-center">
+          <a class="navbar-brand " href="/">CRUD MINI PROJECT</a>
+        </div>
+    </nav>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-5">
+                <h2 class="text-white bg-dark text-center p-3">Confrim Delete</h2>
+                <br>
+                <form action="/confirmDelete/{{data.id}}" method="post"> {% csrf_token %}
+                    
+                    
+                    <div class="form-group">
+                        <p>Are you sure you want to delete contact "{{data.name}}"</p>
+                    </div>
+                    
+                    <br>
+                    <div>
+                    <button class="btn btn-primary" name="button" value="delete" type="submit">Delete</button>
+                    <button class="btn btn-info" name="button" value="cancel" type="submit">Cancel</button>
+                    </div>
+                </form>
+            
+
+
+        </div>
+    </div>
+</div>
+  </body>
+
+  <footer>
+    <p>&copy;Created by Mansi Bhiwapurkar</p>
+</footer>
+
+</html>
